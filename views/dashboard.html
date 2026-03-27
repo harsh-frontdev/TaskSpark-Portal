@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Project Management Portal</title>
+    <!-- Link to Dashboard CSS -->
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <!-- Google Fonts for Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Boxicons for clean Dashboard Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <!-- JS Hook: id="sidebar" -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+            <i class='bx bxs-dashboard'></i>
+            <span>TaskSpark</span>
+        </div>
+        <ul class="sidebar__menu">
+            <li class="sidebar__item active"><a href="/dashboard.html"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+            <li class="sidebar__item"><a href="/views/projects.html"><i class='bx bx-folder'></i> <span>Projects</span></a></li>
+            <li class="sidebar__item"><a href="/tasks"><i class='bx bx-task'></i> <span>Tasks</span></a></li>
+            <li class="sidebar__item"><a href="/leaderboard"><i class='bx bx-bar-chart-alt-2'></i> <span>Request Leaderboard</span></a></li>
+            <li class="sidebar__item"><a href="/attendance"><i class='bx bx-calendar-check'></i> <span>Attendance</span></a></li>
+            <li class="sidebar__item"><a href="/leaves"><i class='bx bx-calendar-x'></i> <span>Leaves</span></a></li>
+            <li class="sidebar__item"><a href="/ot-requests"><i class='bx bx-time-five'></i> <span>OT Requests</span></a></li>
+            <li class="sidebar__item"><a href="/corrections"><i class='bx bx-check-shield'></i> <span>Corrections</span></a></li>
+            <li class="sidebar__item"><a href="/payslip"><i class='bx bx-receipt'></i> <span>Payslip</span></a></li>
+            <li class="sidebar__item"><a href="/telegram"><i class='bx bxl-telegram'></i> <span>Telegram</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="header">
+            <div class="header__left">
+                <!-- JS Hook: id="sidebar-toggle" to collapse/expand sidebar -->
+                <button class="header__toggle" id="sidebar-toggle">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <h1 class="header__title">Dashboard</h1>
+            </div>
+            
+            <div class="header__right">
+                <!-- Timer component -->
+                <!-- JS Hook: id="global-timer", "timer-display", "btn-start-timer" -->
+                <div class="header__timer" id="global-timer">
+                    <i class='bx bx-stopwatch'></i>
+                    <span id="timer-display">00:00:00</span>
+                    <button class="btn btn--primary btn--small" id="btn-start-timer">Start</button>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="header__notifications">
+                    <i class='bx bx-bell'></i>
+                    <!-- JS Hook: id="notification-count" -->
+                    <span class="badge" id="notification-count">3</span>
+                </div>
+                
+                <!-- User Profile -->
+                <!-- JS Hook: id="user-profile-dropdown" -->
+                <div class="header__profile" id="user-profile-dropdown">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="User Profile" class="profile__avatar">
+                    <div class="profile__info">
+                        <span class="profile__name" id="user-name">Admin User</span>
+                        <span class="profile__role" id="user-role">Manager</span>
+                    </div>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="content-wrapper">
+            
+            <!-- Summary Cards Section -->
+            <section class="summary-cards">
+                <div class="card card--summary">
+                    <div class="card__icon card__icon--blue">
+                        <i class='bx bx-folder-open'></i>
+                    </div>
+                    <div class="card__details">
+                        <h3 class="card__title">Total Projects</h3>
+                        <!-- JS Hook: id="stat-total-projects" -->
+                        <p class="card__value" id="stat-total-projects">24</p>
+                    </div>
+                </div>
+                <div class="card card--summary">
+                    <div class="card__icon card__icon--green">
+                        <i class='bx bx-task'></i>
+                    </div>
+                    <div class="card__details">
+                        <h3 class="card__title">Total Tasks</h3>
+                        <!-- JS Hook: id="stat-total-tasks" -->
+                        <p class="card__value" id="stat-total-tasks">142</p>
+                    </div>
+                </div>
+                <div class="card card--summary">
+                    <div class="card__icon card__icon--purple">
+                        <i class='bx bx-group'></i>
+                    </div>
+                    <div class="card__details">
+                        <h3 class="card__title">Active Clients</h3>
+                        <!-- JS Hook: id="stat-active-clients" -->
+                        <p class="card__value" id="stat-active-clients">18</p>
+                    </div>
+                </div>
+                <div class="card card--summary">
+                    <div class="card__icon card__icon--orange">
+                        <i class='bx bx-time'></i>
+                    </div>
+                    <div class="card__details">
+                        <h3 class="card__title">Pending Requests</h3>
+                        <!-- JS Hook: id="stat-pending-requests" -->
+                        <p class="card__value" id="stat-pending-requests">7</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tables Section -->
+            <div class="tables-grid">
+                
+                <!-- Recent Projects Table -->
+                <section class="card card--table">
+                    <div class="card__header">
+                        <h2>Recent Projects</h2>
+                        <a href="/projects" class="btn btn--text">View All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="dashboard-projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Client</th>
+                                    <th>Status</th>
+                                    <th>Progress</th>
+                                </tr>
+                            </thead>
+                            <!-- JS Hook: tbody id="projects-tbody" for dynamic list -->
+                            <tbody id="projects-tbody">
+                                <tr>
+                                    <td>Website Redesign</td>
+                                    <td>Acme Corp</td>
+                                    <td><span class="status badge--in-progress">In Progress</span></td>
+                                    <td>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill" style="width: 65%;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile App MVP</td>
+                                    <td>Startup Inc</td>
+                                    <td><span class="status badge--planning">Planning</span></td>
+                                    <td>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill" style="width: 15%;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>SEO Optimization</td>
+                                    <td>Tech Bros</td>
+                                    <td><span class="status badge--completed">Completed</span></td>
+                                    <td>
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill progress-bar__fill--success" style="width: 100%;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Recent Tasks Table -->
+                <section class="card card--table">
+                    <div class="card__header">
+                        <h2>Recent Tasks</h2>
+                        <a href="/tasks" class="btn btn--text">View All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="dashboard-tasks-table">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Assignee</th>
+                                    <th>Due Date</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <!-- JS Hook: tbody id="tasks-tbody" for dynamic list -->
+                            <tbody id="tasks-tbody">
+                                <tr>
+                                    <td>Design Homepage UI</td>
+                                    <td>
+                                        <div class="user-block">
+                                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User">
+                                            <span>John D.</span>
+                                        </div>
+                                    </td>
+                                    <td>Oct 24, 2023</td>
+                                    <td><span class="priority priority--high">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Fix login bugs</td>
+                                    <td>
+                                        <div class="user-block">
+                                            <img src="https://ui-avatars.com/api/?name=Jane+Smith&background=random" alt="User">
+                                            <span>Jane S.</span>
+                                        </div>
+                                    </td>
+                                    <td>Oct 25, 2023</td>
+                                    <td><span class="priority priority--medium">Medium</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Update documentation</td>
+                                    <td>
+                                        <div class="user-block">
+                                            <img src="https://ui-avatars.com/api/?name=Mike+Ross&background=random" alt="User">
+                                            <span>Mike R.</span>
+                                        </div>
+                                    </td>
+                                    <td>Oct 28, 2023</td>
+                                    <td><span class="priority priority--low">Low</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

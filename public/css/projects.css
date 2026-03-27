@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Projects Page Specific CSS
+   (Extends core styles from dashboard.css)
+   ========================================================================== */
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: var(--color-text-main);
+    font-weight: 700;
+}
+
+/* Controls / Filters Bar */
+.filters-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-surface);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-sm);
+    width: 320px;
+    border: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.search-box:focus-within {
+    border-color: var(--color-primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.search-box i {
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+}
+.search-box input::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* Filter Options */
+.filter-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-text-main);
+}
+
+.filter-btn.active {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+}
+
+/* Extended Table Utilities */
+.table-subtext {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+}
+
+.timeline-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.client-name {
+    font-weight: 600;
+}
+
+.progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.progress-wrap .progress-bar {
+    width: 120px;
+}
+
+.progress-percent {
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: 30px;
+}
+
+/* Avatar Group (Stacked Avatars) */
+.avatar-group {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-group img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--color-surface);
+    margin-left: -10px;
+    object-fit: cover;
+    transition: transform var(--transition-fast);
+    cursor: pointer;
+}
+
+.avatar-group img:hover {
+    transform: translateY(-3px) scale(1.1);
+    z-index: 10;
+}
+
+.avatar-group img:first-child {
+    margin-left: 0;
+}
+
+.avatar-group .more-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--color-surface);
+    background-color: var(--color-secondary);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: -10px;
+    z-index: 1;
+}
+
+/* Action Buttons Grid */
+.action-btns {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    color: var(--color-text-main);
+    transition: all var(--transition-fast);
+    font-size: 1.1rem;
+}
+
+.btn-icon:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-icon.delete:hover {
+    background-color: var(--color-danger);
+    color: #fff;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.page-btn.active {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+}
+
+.page-btn:hover:not(.active) {
+    background-color: var(--color-primary-hover);
+    color: #fff;
+    border-color: var(--color-primary-hover);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .filter-options {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        flex-wrap: nowrap;
+    }
+    
+    .filter-btn {
+        flex: 0 0 auto;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

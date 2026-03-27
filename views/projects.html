@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Project Management Portal</title>
+    <!-- Core Dashboard CSS (layout & shared elements) -->
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+    <!-- Projects specific CSS -->
+    <link rel="stylesheet" href="../public/css/projects.css">
+    <!-- Google Fonts for Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Boxicons for clean Dashboard Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <!-- JS Hook: id="sidebar" -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+            <i class='bx bxs-dashboard'></i>
+            <span>TaskSpark</span>
+        </div>
+        <ul class="sidebar__menu">
+            <li class="sidebar__item"><a href="/dashboard"><i class='bx bx-grid-alt'></i> <span>Dashboard</span></a></li>
+            <li class="sidebar__item active"><a href="/projects"><i class='bx bx-folder'></i> <span>Projects</span></a></li>
+            <li class="sidebar__item"><a href="/tasks"><i class='bx bx-task'></i> <span>Tasks</span></a></li>
+            <li class="sidebar__item"><a href="/leaderboard"><i class='bx bx-bar-chart-alt-2'></i> <span>Request Leaderboard</span></a></li>
+            <li class="sidebar__item"><a href="/attendance"><i class='bx bx-calendar-check'></i> <span>Attendance</span></a></li>
+            <li class="sidebar__item"><a href="/leaves"><i class='bx bx-calendar-x'></i> <span>Leaves</span></a></li>
+            <li class="sidebar__item"><a href="/ot-requests"><i class='bx bx-time-five'></i> <span>OT Requests</span></a></li>
+            <li class="sidebar__item"><a href="/corrections"><i class='bx bx-check-shield'></i> <span>Corrections</span></a></li>
+            <li class="sidebar__item"><a href="/payslip"><i class='bx bx-receipt'></i> <span>Payslip</span></a></li>
+            <li class="sidebar__item"><a href="/telegram"><i class='bx bxl-telegram'></i> <span>Telegram</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="header">
+            <div class="header__left">
+                <!-- JS Hook: id="sidebar-toggle" -->
+                <button class="header__toggle" id="sidebar-toggle">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <h1 class="header__title">Projects</h1>
+            </div>
+            
+            <div class="header__right">
+                <!-- Timer component -->
+                <!-- JS Hook: id="global-timer", "timer-display", "btn-start-timer" -->
+                <div class="header__timer" id="global-timer">
+                    <i class='bx bx-stopwatch'></i>
+                    <span id="timer-display">00:00:00</span>
+                    <button class="btn btn--primary btn--small" id="btn-start-timer">Start</button>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="header__notifications">
+                    <i class='bx bx-bell'></i>
+                    <!-- JS Hook: id="notification-count" -->
+                    <span class="badge" id="notification-count">3</span>
+                </div>
+                
+                <!-- User Profile -->
+                <!-- JS Hook: id="user-profile-dropdown" -->
+                <div class="header__profile" id="user-profile-dropdown">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="User Profile" class="profile__avatar">
+                    <div class="profile__info">
+                        <span class="profile__name" id="user-name">Admin User</span>
+                        <span class="profile__role" id="user-role">Manager</span>
+                    </div>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Projects Content -->
+        <div class="content-wrapper">
+            
+            <!-- Page Header -->
+            <div class="page-header">
+                <h2 class="page-title">All Projects</h2>
+                <!-- JS Hook: id="btn-new-project" -->
+                <button class="btn btn--primary" id="btn-new-project">
+                    <i class='bx bx-plus'></i> New Project
+                </button>
+            </div>
+
+            <!-- Filters & Search Bar -->
+            <div class="filters-bar">
+                <!-- Search Input -->
+                <!-- JS Hook: id="search-project" -->
+                <div class="search-box">
+                    <i class='bx bx-search'></i>
+                    <input type="text" id="search-project" placeholder="Search projects by name, client...">
+                </div>
+
+                <!-- Filter Options -->
+                <!-- JS Hook: id="filter-options" (event delegation for buttons) -->
+                <div class="filter-options" id="filter-options">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="planning">Planning</button>
+                </div>
+            </div>
+
+            <!-- Projects Table -->
+            <section class="card card--table">
+                <div class="table-responsive">
+                    <table class="data-table" id="projects-table">
+                        <thead>
+                            <tr>
+                                <th>Project Info</th>
+                                <th>Client</th>
+                                <th>Dates & Timeline</th>
+                                <th>Status</th>
+                                <th>Team</th>
+                                <th>Overall Progress</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <!-- JS Hook: tbody id="projects-list-tbody" -->
+                        <tbody id="projects-list-tbody">
+                            <!-- Example Row 1 -->
+                            <tr>
+                                <td>
+                                    <strong>Website Redesign</strong>
+                                    <div class="table-subtext">ID: #PRJ-001</div>
+                                </td>
+                                <td>
+                                    <span class="client-name">Acme Corp</span>
+                                </td>
+                                <td>
+                                    <div class="timeline-text">Oct 1, 2023 - Nov 15, 2023</div>
+                                    <div class="table-subtext">45 Days</div>
+                                </td>
+                                <td><span class="status badge--in-progress">In Progress</span></td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <img src="https://ui-avatars.com/api/?name=Alex&background=random" title="Alex" alt="Team">
+                                        <img src="https://ui-avatars.com/api/?name=Bob&background=random" title="Bob" alt="Team">
+                                        <img src="https://ui-avatars.com/api/?name=Charlie&background=random" title="Charlie" alt="Team">
+                                        <div class="more-avatar">+2</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="progress-wrap">
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill" style="width: 65%;"></div>
+                                        </div>
+                                        <span class="progress-percent">65%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="action-btns">
+                                        <button class="btn-icon" title="Edit"><i class='bx bx-edit-alt'></i></button>
+                                        <button class="btn-icon delete" title="Delete"><i class='bx bx-trash'></i></button>
+                                        <button class="btn-icon" title="View Details"><i class='bx bx-chevron-right'></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Example Row 2 -->
+                            <tr>
+                                <td>
+                                    <strong>Mobile App MVP</strong>
+                                    <div class="table-subtext">ID: #PRJ-002</div>
+                                </td>
+                                <td>
+                                    <span class="client-name">Startup Inc</span>
+                                </td>
+                                <td>
+                                    <div class="timeline-text">Oct 15, 2023 - Jan 20, 2024</div>
+                                    <div class="table-subtext">3 Months</div>
+                                </td>
+                                <td><span class="status badge--planning">Planning</span></td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <img src="https://ui-avatars.com/api/?name=Dave&background=random" title="Dave" alt="Team">
+                                        <img src="https://ui-avatars.com/api/?name=Eve&background=random" title="Eve" alt="Team">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="progress-wrap">
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill" style="width: 15%;"></div>
+                                        </div>
+                                        <span class="progress-percent">15%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="action-btns">
+                                        <button class="btn-icon" title="Edit"><i class='bx bx-edit-alt'></i></button>
+                                        <button class="btn-icon delete" title="Delete"><i class='bx bx-trash'></i></button>
+                                        <button class="btn-icon" title="View Details"><i class='bx bx-chevron-right'></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Example Row 3 -->
+                            <tr>
+                                <td>
+                                    <strong>SEO Optimization</strong>
+                                    <div class="table-subtext">ID: #PRJ-003</div>
+                                </td>
+                                <td>
+                                    <span class="client-name">Tech Bros</span>
+                                </td>
+                                <td>
+                                    <div class="timeline-text">Sep 1, 2023 - Sep 30, 2023</div>
+                                    <div class="table-subtext">30 Days</div>
+                                </td>
+                                <td><span class="status badge--completed">Completed</span></td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <img src="https://ui-avatars.com/api/?name=Frank&background=random" title="Frank" alt="Team">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="progress-wrap">
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill progress-bar__fill--success" style="width: 100%;"></div>
+                                        </div>
+                                        <span class="progress-percent">100%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="action-btns">
+                                        <button class="btn-icon" title="Edit"><i class='bx bx-edit-alt'></i></button>
+                                        <button class="btn-icon delete" title="Delete"><i class='bx bx-trash'></i></button>
+                                        <button class="btn-icon" title="View Details"><i class='bx bx-chevron-right'></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Widget -->
+                <!-- JS Hook: id="projects-pagination" -->
+                <div class="pagination" id="projects-pagination">
+                    <button class="page-btn"><i class='bx bx-chevron-left'></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class='bx bx-chevron-right'></i></button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>
